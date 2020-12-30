@@ -42,6 +42,15 @@ public interface BrandService {
     public TbBrand findOne(Long id);
 
 
+    /**
+     *
+     * @param tbBrand
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    public PageResult getAll(TbBrand tbBrand, int pageNum, int pageSize);
+
 
 
 }

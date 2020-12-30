@@ -89,5 +89,17 @@ public class BrandController {
         return brandService.findOne(id);
     }
 
+    /**
+     * 查询
+     * @param tbBrand
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("/search")
+    public PageResult search(@RequestBody TbBrand tbBrand, int page, int rows){
+        return brandService.getAll(tbBrand,page,rows);
+    }
+
 
 }
