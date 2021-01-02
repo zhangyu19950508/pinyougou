@@ -20,10 +20,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Autowired
     private TbBrandMapper tbBrandMapper;
-    @Override
-    public List<TbBrand> findAll() {
-        return tbBrandMapper.selectByExample(null);
-    }
+
 
     @Override
     public PageResult findPage(int pageNum, int pageSize) {
@@ -68,6 +65,11 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public TbBrand findOne(Long id) {
         return tbBrandMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<TbBrand> findAll() {
+        return tbBrandMapper.selectByExample(null);
     }
 
     /**

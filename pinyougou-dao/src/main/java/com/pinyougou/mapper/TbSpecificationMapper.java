@@ -5,6 +5,7 @@ import com.pinyougou.pojo.TbSpecificationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+
 public interface TbSpecificationMapper {
     int countByExample(TbSpecificationExample example);
 

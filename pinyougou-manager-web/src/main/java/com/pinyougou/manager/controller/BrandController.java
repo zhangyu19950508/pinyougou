@@ -26,6 +26,7 @@ public class BrandController {
         return brandService.findAll();
     }
 
+
     @RequestMapping("/findPage")
     public PageResult findPage(int page,int rows){
         return brandService.findPage(page,rows);
@@ -47,9 +48,10 @@ public class BrandController {
         }
     }
 
-    /* 修改
-	 * @param brand
-	 * @return
+    /**
+     * 修改品牌信息
+     * @param tbBrand
+     * @return
      */
     @RequestMapping("/updateTbBrand")
     public Result Update(@RequestBody TbBrand tbBrand){
@@ -62,8 +64,9 @@ public class BrandController {
         }
     }
 
-    /* 删除
-     * @param brand
+    /**
+     * 删除一个或多个品牌
+     * @param ids
      * @return
      */
     @RequestMapping("/deleteTbBrand")
@@ -77,8 +80,6 @@ public class BrandController {
         }
     }
 
-
-
     /**
      * 获取实体
      * @param id
@@ -90,10 +91,10 @@ public class BrandController {
     }
 
     /**
-     * 查询
+     * 条件查询
      * @param tbBrand
-     * @param pageNum
-     * @param pageSize
+     * @param page
+     * @param rows
      * @return
      */
     @RequestMapping("/search")

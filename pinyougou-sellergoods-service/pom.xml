@@ -69,8 +69,9 @@
             <artifactId>fastjson</artifactId>
         </dependency>
         <dependency>
-            <groupId>javassist</groupId>
+            <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
+            <version>3.18.2-GA</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
