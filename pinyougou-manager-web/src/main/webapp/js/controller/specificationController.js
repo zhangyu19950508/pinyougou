@@ -33,8 +33,8 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	
 	//保存 
 	$scope.save=function(){				
-		var serviceObject;//服务层对象  				
-		if($scope.entity.specification.id!=null){//如果有ID
+		var serviceObject;//服务层对象
+	    if($scope.entity.tbSpecification.id!=null){
 			serviceObject=specificationService.update( $scope.entity ); //修改  
 		}else{
 			serviceObject=specificationService.add( $scope.entity  );//增加 
@@ -53,14 +53,21 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.dele=function(){
+		//出现过删除无效的问题 原因处在这：点击复选框时并未将该id加入复选框
+		if($scope.selectIds.length==0){
+			alert("请选择");
+			return;
+		}
 		//获取选中的复选框			
 		specificationService.dele( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
-				}						
+				}else{
+					alert(response.message);
+				}
 			}		
 		);				
 	}

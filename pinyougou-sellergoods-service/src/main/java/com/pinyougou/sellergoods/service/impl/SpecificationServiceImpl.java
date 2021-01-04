@@ -57,6 +57,7 @@ public class SpecificationServiceImpl implements SpecificationService {
 		specificationMapper.insert(specification.getTbSpecification());
 		//存储规格选项列表
 		for(TbSpecificationOption sp :specification.getSpecificationOptionList()){
+			//设置规格ID
 			sp.setSpecId(specification.getTbSpecification().getId());
 			tbSpecificationOptionMapper.insert(sp);
 		}
@@ -117,7 +118,7 @@ public class SpecificationServiceImpl implements SpecificationService {
 			//删除此规格的选项
 			TbSpecificationOptionExample tbSpecificationOptionExample = new TbSpecificationOptionExample();
 			TbSpecificationOptionExample.Criteria criteria = tbSpecificationOptionExample.createCriteria();
-			criteria.andIdEqualTo(id);
+			criteria.andSpecIdEqualTo(id);
 			tbSpecificationOptionMapper.deleteByExample(tbSpecificationOptionExample);
 		}
 	}
