@@ -11,9 +11,14 @@
 
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-login-manage.css" />
+	<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../js/base.js"></script>
+	<script type="text/javascript" src="../js/service/loginService.js"></script>
+	<script type="text/javascript" src="../js/controller/indexController.js"></script>
+
 </head>
 
-<body>
+<body ng-app="pinyougou" ng-controller="indexController" ng-init="showLoginName()">
 	<div class="loginmanage">
 		<div class="py-container">
 			<h4 class="manage-title">品优购运营商运营管理后台</h4>
@@ -37,12 +42,12 @@
 						<img src="../img/wx_cz.jpg" />
 					</div>
 					<div id="profile" class="tab-pane  active">
-						<form class="sui-form">
+						<form id="loginform" action="/login" method="post" class="sui-form">
 							<div class="input-prepend"><span class="add-on loginname"></span>
-								<input id="prependedInput" type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
+								<input id="prependedInput"  name="username" type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
 							</div>
 							<div class="input-prepend"><span class="add-on loginpwd"></span>
-								<input id="prependedInput" type="password" placeholder="请输入密码" class="span2 input-xfat">
+								<input id="prependedInput" name="password" type="password" placeholder="请输入密码" class="span2 input-xfat">
 							</div>
 							<div class="setting">
 								 <div id="slider">
@@ -51,7 +56,7 @@
 									</div>
 							</div>
 							<div class="logined">
-								<a class="sui-btn btn-block btn-xlarge btn-danger" href="admin/index.html" target="_blank">登&nbsp;&nbsp;录</a>
+								<a class="sui-btn btn-block btn-xlarge btn-danger" onclick="document:loginform.submit()"  href="admin/index.html" target="_blank">登&nbsp;&nbsp;录</a>
 							</div>
 						</form>
 

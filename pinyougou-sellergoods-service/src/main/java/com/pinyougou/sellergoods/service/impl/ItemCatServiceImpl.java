@@ -74,9 +74,18 @@ public class ItemCatServiceImpl implements ItemCatService {
 	 */
 	@Override
 	public void delete(Long[] ids) {
+		//判断要删除的分类是否有下级分类
+		for(Long id:ids){
+			List<TbItemCat> list  = findByParentId(id);
+			if(list.size()>0){
+				throw new RuntimeException("不能删除有下级分类的商品分类！");
+			}
+		}
+		//删除
 		for(Long id:ids){
 			itemCatMapper.deleteByPrimaryKey(id);
-		}		
+		}
+
 	}
 	
 	
@@ -97,5 +106,17 @@ public class ItemCatServiceImpl implements ItemCatService {
 		Page<TbItemCat> page= (Page<TbItemCat>)itemCatMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	/**
+	 * 根据上级ID查询列表
+	 */
+	@Override
+	public List<TbItemCat> findByParentId(Long parentId) {
+		TbItemCatExample example1=new TbItemCatExample();
+		Criteria criteria1 = example1.createCriteria();
+		criteria1.andParentIdEqualTo(parentId);
+		return  itemCatMapper.selectByExample(example1);
+	}
+
+
 }

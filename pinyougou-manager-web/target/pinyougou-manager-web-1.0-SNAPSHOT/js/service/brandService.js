@@ -21,4 +21,7 @@ app.service("brandService",function ($http) {
     this.updateTbBrand = function (entity) {
         return $http.post('../brand/updateTbBrand.do',entity);
     }
+    this.selectOptionList = function () {
+        return $http.post('../brand/selectOptionList.do');
+    }
 })

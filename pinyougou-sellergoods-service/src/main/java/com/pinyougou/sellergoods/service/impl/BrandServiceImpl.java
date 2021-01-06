@@ -11,6 +11,7 @@ import com.pinyougou.sellergoods.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 品牌服务层实现
@@ -100,6 +101,11 @@ public class BrandServiceImpl implements BrandService {
         }
         Page<TbBrand> pages = (Page<TbBrand>) tbBrandMapper.selectByExample(tbBrandExample);
         return new PageResult(pages.getTotal(),pages.getResult());
+    }
+
+    @Override
+    public List<Map> selectOptionList() {
+        return tbBrandMapper.selectOptionList();
     }
 
 

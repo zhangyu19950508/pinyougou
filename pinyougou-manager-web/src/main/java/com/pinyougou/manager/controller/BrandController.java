@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 品牌的控制器曾
@@ -100,6 +101,15 @@ public class BrandController {
     @RequestMapping("/search")
     public PageResult search(@RequestBody TbBrand tbBrand, int page, int rows){
         return brandService.getAll(tbBrand,page,rows);
+    }
+
+    /**
+     * 获取品牌下拉列表
+     * @return
+     */
+    @RequestMapping("/selectOptionList")
+    public List<Map> selectOptionList(){
+        return brandService.selectOptionList();
     }
 
 

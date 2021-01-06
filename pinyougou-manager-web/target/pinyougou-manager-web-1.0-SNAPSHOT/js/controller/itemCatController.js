@@ -58,7 +58,7 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 		itemCatService.dele( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
-					$scope.reloadList();//刷新列表
+					$scope.findByParentId($scope.parentId);//刷新列表
 					$scope.selectIds=[];
 				}						
 			}		
@@ -76,5 +76,80 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 			}			
 		);
 	}
-    
+
+	//根据上级ID显示下级列表
+	$scope.findByParentId=function(parentId){
+		itemCatService.findByParentId(parentId).success(
+			function(response){
+				$scope.list=response;
+			}
+		);
+	}
+
+	$scope.breadcrumb=[{id:0,name:"顶级分类列表"}];//定义面包屑
+	//搜索
+	$scope.search=function(id,name){
+		$scope.breadcrumb.push( {id:id,name:name} );
+		$scope.findByParentId(id);
+	}
+	$scope.showList=function(index,id){
+		$scope.breadcrumb.splice(index+1,2);  //截断面包屑
+		$scope.findByParentId(id);
+	}
+
+	$scope.entity={parentId:0};//记录本级的ID
+	//根据上级ID显示下级列表
+	$scope.findByParentId=function(parentId){
+		$scope.entity.parentId=parentId;
+		itemCatService.findByParentId(parentId).success(
+			function(response){
+				$scope.list=response;
+			}
+		);
+	}
+
+	//保存
+	$scope.save=function(){
+		var serviceObject;//服务层对象
+		if($scope.entity.id!=null){//如果有ID
+			serviceObject=itemCatService.update( $scope.entity ); //修改
+		}else{
+			serviceObject=itemCatService.add( $scope.entity  );//增加
+		}
+		serviceObject.success(
+			function(response){
+				if(response.success){
+					//重新查询
+					$scope.findByParentId($scope.entity.parentId);
+				}else{
+					alert(response.message);
+				}
+			}
+		);
+	}
+	//查询模板列表
+	$scope.findTypeTemplateList=function () {
+		typeTemplateService.findAll().success( function(response){
+			$scope.typeTemplateList= response;
+		})
+	}
+
+	$scope.typeTemplateMap=[];
+//查询模板列表
+	$scope.findTypeTemplateList=function () {
+		typeTemplateService.findAll().success( function(response){
+			$scope.typeTemplateList= response;
+			//构建$scope.typeTemplateMap
+			for(var i=0;i<$scope.typeTemplateList.length;i++){
+				var typeTemplate= $scope.typeTemplateList[i];
+				$scope.typeTemplateMap[typeTemplate.id]=typeTemplate.name;
+			}
+		})
+	}
+
+
+
+
+
+
 });	
