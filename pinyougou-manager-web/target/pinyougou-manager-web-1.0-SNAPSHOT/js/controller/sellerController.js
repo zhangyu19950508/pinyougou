@@ -32,23 +32,16 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 	}
 	
 	//保存 
-	$scope.save=function(){				
-		var serviceObject;//服务层对象  				
-		if($scope.entity.id!=null){//如果有ID
-			serviceObject=sellerService.update( $scope.entity ); //修改  
-		}else{
-			serviceObject=sellerService.add( $scope.entity  );//增加 
-		}				
-		serviceObject.success(
+	$scope.add=function(){
+		sellerService.add( $scope.entity  ).success(
 			function(response){
 				if(response.success){
-					//重新查询 
-		        	$scope.reloadList();//重新加载
+					location.href='shoplogin.html';
 				}else{
 					alert(response.message);
 				}
-			}		
-		);				
+			}
+		);
 	}
 	
 	 
@@ -75,6 +68,18 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
+	}
+
+	$scope.updateStatus=function (selleId,status) {
+		sellerService.updateStatus(selleId,status).success(
+			function (response) {
+				if (response.success()){
+					$scope.reloadList(); //刷新列表
+				}else{
+					alert("更改商家状态失败");
+				}
+			}
+		)
 	}
     
 });	

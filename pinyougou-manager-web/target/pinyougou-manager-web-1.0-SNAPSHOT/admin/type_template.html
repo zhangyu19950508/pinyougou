@@ -126,13 +126,13 @@
 		      	<tr>
 		      		<td>关联品牌</td>
 		      		<td>
-						<input select2 select2-model="entity.brandIds" config="brandList" placeholder="支持多选哦" class="form-control" type="text">
+						<input select2 select2-model="entity.brandIds" config="brandList" multiple placeholder="支持多选哦" class="form-control" type="text">
 		      		</td>
 		      	</tr>
 		      	<tr>
 		      		<td>关联规格</td>
 		      		<td>
-						<input select2 select2-model="entity.specIds" config="specificationList" placeholder="支持多选哦" class="form-control" type="text">
+						<input select2 select2-model="entity.specIds" config="specificationList" multiple placeholder="支持多选哦" class="form-control" type="text">
 		      		</td>
 		      	</tr>	
 		      	
@@ -168,8 +168,8 @@
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
-			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true" ng-click="save()">关闭</button>
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save()">保存</button>
+			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true" >关闭</button>
 		</div>
 	  </div>
 	</div>
