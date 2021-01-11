@@ -16,6 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="fastDfsModel" target="1.9" />
       <module name="rsa" target="1.7" />
     </bytecodeTargetLevel>
   </component>

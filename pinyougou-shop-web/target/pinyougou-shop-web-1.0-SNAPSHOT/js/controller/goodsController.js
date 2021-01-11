@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller   ,goodsService){	
+app.controller('goodsController' ,function($scope,$controller   ,goodsService,uploadService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -31,24 +31,23 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 		);				
 	}
 	
-	//保存 
-	$scope.save=function(){				
-		var serviceObject;//服务层对象  				
-		if($scope.entity.id!=null){//如果有ID
-			serviceObject=goodsService.update( $scope.entity ); //修改  
-		}else{
-			serviceObject=goodsService.add( $scope.entity  );//增加 
-		}				
-		serviceObject.success(
+	//增加
+	$scope.add=function(){
+		//提取富文本编辑器内的内容并存储到实体中
+		alert("add执行了");
+		$scope.entity.goodsDesc.introduction = editor.html();
+		alert("$scope.entity.goodsDesc.introduction = editor.html();执行了");
+		goodsService.add( $scope.entity  ).success(
 			function(response){
+				alert(response.message);
 				if(response.success){
 					//重新查询 
-		        	$scope.reloadList();//重新加载
-				}else{
-					alert(response.message);
+		        	$scope.entity={};
+					editor.html("");//清空富文本编辑器内的内容
 				}
 			}		
-		);				
+		);
+		alert("goodsService.add执行了");
 	}
 	
 	 
@@ -76,5 +75,29 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}			
 		);
 	}
-    
+
+	$scope.image_entity={};
+	$scope.uploadFile=function () {
+		uploadService.uploadFile().success(function (response) {
+			alert(response);
+			if(response.error==0){
+				$scope.image_entity.url=  response.url;
+			}else{
+				alert(response.message);
+			}
+		})
+	}
+
+	$scope.entity={goods:{},goodsDesc:{itemImages:[]}};//定义页面实体结构
+	//添加图片列表
+	$scope.add_image_entity=function(){
+		$scope.entity.goodsDesc.itemImages.push($scope.image_entity);
+	}
+
+	//列表中移除图片
+	$scope.remove_image_entity=function(index){
+		$scope.entity.goodsDesc.itemImages.splice(index,1);
+	}
+
+
 });	

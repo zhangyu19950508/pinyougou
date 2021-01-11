@@ -11,5 +11,19 @@
 
     <artifactId>pinyougou-common</artifactId>
 
+    <dependencies>
+        <!-- 文件上传组件 -->
+        <!--服务器上传到DFS服务器-->
+        <dependency>
+            <groupId>org.csource.fastdfs</groupId>
+            <artifactId>fastdfs</artifactId>
+        </dependency>
+        <!--用户客户端上传到服务器-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>
