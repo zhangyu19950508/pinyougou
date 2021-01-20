@@ -36,7 +36,7 @@
 
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="selectItemCat1List()">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="selectItemCat1List();findOne()">
 
             <!-- 正文区域 -->
             <section class="content">
@@ -100,7 +100,7 @@
 		                           
 		                           <div class="col-md-2 title" >品牌</div>
 		                           <div class="col-md-10 data">
-		                              <select ng-model="entity.goods.brandIds" ng-options="item.id as item.text for item in typeTemplate.brandIds" class="form-control" ></select>
+		                              <select ng-model="entity.goods.brandId" ng-options="item.id as item.text for item in typeTemplate.brandIds" class="form-control" ></select>
 		                           </div>
 		
 								   <div class="col-md-2 title">副标题</div>
@@ -166,30 +166,30 @@
                                 </div>
                             </div>
                            
-                           
-                            <!--扩展属性-->
-                            <div class="tab-pane" id="customAttribute">
-                                <div class="row data-type">                                
-	                                <div ng-repeat="pojo in entity.goodsDesc.customAttributeItems">
-		                                <div class="col-md-2 title">{{pojo.text}}</div>
-				                        <div class="col-md-10 data">
-				                              <input ng-model="pojo.value"  class="form-control" placeholder="{{pojo.text}}">
-				                        </div>
-	                                </div>
-                                </div>
-                            </div>
-                      
-                            <!--规格-->
+
+							<!--扩展属性-->
+							<div class="tab-pane" id="customAttribute">
+								<div class="row data-type">
+									<div ng-repeat="pojo in entity.goodsDesc.customAttributeItems">
+										<div class="col-md-2 title">{{pojo.text}}</div>
+										<div class="col-md-10 data">
+											<input class="form-control" ng-model="pojo.value" placeholder="{{pojo.text}}">	            </div>
+									</div>
+								</div>
+							</div>
+
+
+							<!--规格-->
                             <div class="tab-pane" id="spec">
                             	<div class="row data-type">
 	                            	<div class="col-md-2 title">是否启用规格</div>
 			                        <div class="col-md-10 data">
-			                        	<input type="checkbox" >			                           
+			                        	<input type="checkbox" ng-model="entity.goods.isEnableSpec" ng-true-value="1" ng-false-value="0" >
 			                        </div>
                             	</div>
                             	<p>
                             	
-                            	<div>
+                            	<div ng-if="entity.goods.isEnableSpec">
                             	
 	                                <div class="row data-type">
 	                                
@@ -197,7 +197,7 @@
 			                                <div class="col-md-2 title">{{pojo.text}}</div>
 					                        <div class="col-md-10 data">
 					                            <span ng-repeat="option in pojo.options">
-					                            	<input ng-click="updateSpecAttribute($event,pojo.text,option.optionName);createItemList()"   type="checkbox" >{{option.optionName}}
+					                            	<input ng-click="updateSpecAttribute($event,pojo.text,option.optionName);createItemList()" ng-checked="checkAttributeValue(pojo.text,pojo.optionName)"   type="checkbox" >{{option.optionName}}
 					                            </span>
 					                        </div>
 		                                </div>
@@ -253,8 +253,8 @@
                  	
                    </div>
                   <div class="btn-toolbar list-toolbar">
-				      <button class="btn btn-primary" ng-click="add()"><i class="fa fa-save" ></i>保存</button>
-				      <button class="btn btn-default" >返回列表</button>
+				      <button class="btn btn-primary" ng-click="save()"><i class="fa fa-save" ></i>保存</button>
+					  <a href="goods.html" class="btn btn-default">返回列表</a>
 					  {{entity}}
 				  </div>
 			

@@ -21,7 +21,7 @@ public class TbItem implements Serializable {
 
     private String image;
 
-    private Long categoryid;
+    private Long categoryId;
 
     private String status;
 
@@ -115,12 +115,12 @@ public class TbItem implements Serializable {
         this.image = image == null ? null : image.trim();
     }
 
-    public Long getCategoryid() {
-        return categoryid;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryid(Long categoryid) {
-        this.categoryid = categoryid;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getStatus() {

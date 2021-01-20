@@ -10,7 +10,7 @@
     <result column="num" property="num" jdbcType="INTEGER" />
     <result column="barcode" property="barcode" jdbcType="VARCHAR" />
     <result column="image" property="image" jdbcType="VARCHAR" />
-    <result column="categoryId" property="categoryid" jdbcType="BIGINT" />
+    <result column="categoryId" property="categoryId" jdbcType="BIGINT" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
@@ -130,7 +130,7 @@
       spec, seller)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, 
       #{price,jdbcType=DECIMAL}, #{stockCount,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
-      #{barcode,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{categoryid,jdbcType=BIGINT}, 
+      #{barcode,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{categoryId,jdbcType=BIGINT},
       #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{itemSn,jdbcType=VARCHAR}, #{costPirce,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL}, 
       #{isDefault,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, #{sellerId,jdbcType=VARCHAR}, 
@@ -164,7 +164,7 @@
       <if test="image != null" >
         image,
       </if>
-      <if test="categoryid != null" >
+      <if test="categoryId != null" >
         categoryId,
       </if>
       <if test="status != null" >
@@ -235,8 +235,8 @@
       <if test="image != null" >
         #{image,jdbcType=VARCHAR},
       </if>
-      <if test="categoryid != null" >
-        #{categoryid,jdbcType=BIGINT},
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
@@ -315,8 +315,8 @@
       <if test="record.image != null" >
         image = #{record.image,jdbcType=VARCHAR},
       </if>
-      <if test="record.categoryid != null" >
-        categoryId = #{record.categoryid,jdbcType=BIGINT},
+      <if test="record.categoryId != null" >
+        categoryId = #{record.categoryId,jdbcType=BIGINT},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=VARCHAR},
@@ -375,7 +375,7 @@
       num = #{record.num,jdbcType=INTEGER},
       barcode = #{record.barcode,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
-      categoryId = #{record.categoryid,jdbcType=BIGINT},
+      categoryId = #{record.categoryId,jdbcType=BIGINT},
       status = #{record.status,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -418,8 +418,8 @@
       <if test="image != null" >
         image = #{image,jdbcType=VARCHAR},
       </if>
-      <if test="categoryid != null" >
-        categoryId = #{categoryid,jdbcType=BIGINT},
+      <if test="categoryId != null" >
+        categoryId = #{categoryId,jdbcType=BIGINT},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
@@ -475,7 +475,7 @@
       num = #{num,jdbcType=INTEGER},
       barcode = #{barcode,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
-      categoryId = #{categoryid,jdbcType=BIGINT},
+      categoryId = #{categoryId,jdbcType=BIGINT},
       status = #{status,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
