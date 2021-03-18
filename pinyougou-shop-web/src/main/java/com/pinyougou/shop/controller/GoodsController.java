@@ -1,6 +1,8 @@
 package com.pinyougou.shop.controller;
+import java.io.IOException;
 import java.util.List;
 
+import com.pinyougou.page.service.ItemPageService;
 import com.pinyougou.pojogroup.Goods;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +25,9 @@ public class GoodsController {
 
 	@Reference
 	private GoodsService goodsService;
+
+	@Reference
+	private ItemPageService itemPageService;
 	
 	/**
 	 * 返回全部列表
@@ -134,33 +139,31 @@ public class GoodsController {
 		return goodsService.findPage(goods, page, rows);		
 	}
 
-	/**
-	 * 更新状态
-	 * @param ids
-	 * @param status
-	 */
-	@RequestMapping("/updateStatus")
-	public Result updateStatus(Long[] ids, String status){
-		try {
-			goodsService.updateStatus(ids, status);
-			return new Result(true, "成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new Result(false, "失败");
-		}
-	}
 
 	@RequestMapping("/updateMarketable")
 	public Result updateMarketable(Long[] ids, String marketable){
-		//获取当前的商家ID
-		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+
 		try {
+			//获取当前的商家ID
+			String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
 			goodsService.updateMarketable(ids,marketable,sellerId);
+			//上架后 生成商品详细页
+			for(Long goodsId:ids){
+				itemPageService.getItemHtml(goodsId);
+			}
 			return new Result(true,"上架成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result(false,"上架失败");
 		}
+	}
+	/**
+	 * 生成静态页（测试）
+	 * @param goodsId
+	 */
+	@RequestMapping("/getHtml")
+	public void getHtml(Long goodsId){
+		itemPageService.getItemHtml(goodsId);
 	}
 
 

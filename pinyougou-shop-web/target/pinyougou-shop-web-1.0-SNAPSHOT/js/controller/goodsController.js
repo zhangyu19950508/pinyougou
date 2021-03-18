@@ -208,8 +208,7 @@ app.controller('goodsController' ,function($scope,$controller   ,$location,goods
 	$scope.itemCatList=[];//商品分类列表
 	//加载商品分类列表
 	$scope.findItemCatList=function(){
-		itemCatService.findAll().success(
-			function(response){
+		itemCatService.findAll().success(function(response){
 				for(var i=0;i<response.length;i++){
 					$scope.itemCatList[response[i].id]=response[i].name;
 				}

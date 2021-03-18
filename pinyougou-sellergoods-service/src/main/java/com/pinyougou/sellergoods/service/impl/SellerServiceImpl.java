@@ -1,10 +1,12 @@
 package com.pinyougou.sellergoods.service.impl;
 import java.util.Date;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.alibaba.dubbo.config.annotation.Service;
+
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.alibaba.dubbo.config.annotation.Service;
+
 import com.pinyougou.mapper.TbSellerMapper;
 import com.pinyougou.pojo.TbSeller;
 import com.pinyougou.pojo.TbSellerExample;
@@ -37,7 +39,7 @@ public class SellerServiceImpl implements SellerService {
 	 */
 	@Override
 	public PageResult findPage(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);		
+		PageHelper.startPage(pageNum, pageSize);
 		Page<TbSeller> page=   (Page<TbSeller>) sellerMapper.selectByExample(null);
 		return new PageResult(page.getTotal(), page.getResult());
 	}

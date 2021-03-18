@@ -6,17 +6,33 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="pinyougou-common" />
+        <module name="pinyougou-search-service" />
+        <module name="pinyougou-user-service" />
+        <module name="pinyougou-user-web" />
+        <module name="pinyougou-content-service" />
         <module name="pinyougou-sellergoods-interface" />
-        <module name="pinyougou-dao" />
-        <module name="pinyougou-pojo" />
-        <module name="pinyougou-shop-web" />
+        <module name="pinyougou-solr-util" />
+        <module name="pinyougou-common" />
         <module name="pinyougou-manager-web" />
+        <module name="pinyougou-page-interface" />
         <module name="pinyougou-sellergoods-service" />
+        <module name="pinyougou-content-interface" />
+        <module name="pinyougou-search-web" />
+        <module name="pinyougou-page-service" />
+        <module name="pinyougou-dao" />
+        <module name="pinyougou-portal-web" />
+        <module name="pinyougou-pojo" />
+        <module name="pinyougou-search-interface" />
+        <module name="pinyougou-user-interface" />
+        <module name="pinyougou-shop-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="fastDfsModel" target="1.9" />
+      <module name="LittleMSG_send" target="1.9" />
+      <module name="pinyougou-content-service" target="1.7" />
+      <module name="pinyougou-content-service1" target="1.7" />
+      <module name="pinyougou-page-web" target="1.7" />
       <module name="rsa" target="1.7" />
     </bytecodeTargetLevel>
   </component>
