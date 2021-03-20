@@ -46,7 +46,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("/add")
+	/*@RequestMapping("/add")
 	public Result add(@RequestBody TbUser user){
 		try {
 			userService.add(user);
@@ -55,7 +55,7 @@ public class UserController {
 			e.printStackTrace();
 			return new Result(false, "增加失败");
 		}
-	}
+	}*/
 	
 	/**
 	 * 修改
